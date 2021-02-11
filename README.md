@@ -1,29 +1,68 @@
-# datepicker
-
-> Made with create-react-library
-
-[![NPM](https://img.shields.io/npm/v/datepicker.svg)](https://www.npmjs.com/package/datepicker) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+# @vs-form/datepicker
+Datepicker Input Component for @vs-form/tailwind
 
 ## Install
 
 ```bash
-npm install --save datepicker
+npm install --save @vs-form/tailwind
+npm install --save @vs-form/datepicker
+npm install --save react-datepicker
+npm install --save date-fns
+npm install --save-dev @types/react-datepicker
 ```
 
 ## Usage
 
+#### **`index.tsx`**
 ```tsx
-import React, { Component } from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
 
-import MyComponent from 'datepicker'
-import 'datepicker/dist/index.css'
+import DateComp from '@vs-form/datepicker'
+import { RegisterComponent } from '@vs-form/tailwind'
+RegisterComponent('date', DateComp)
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+ReactDOM.render(<App />, document.getElementById('root'))
 ```
+
+#### **`App.tsx`**
+```tsx
+import React from 'react'
+import './tailwind.out.css'
+import { VsForm, ISchema } from '@vs-form/tailwind'
+
+// define the schema
+const schema: ISchema = {
+  type: 'card',
+  label: 'Example',
+  children: [
+    {
+      type: 'field',
+      label: 'Choose Date',
+      inputComponent: {
+        //@ts-ignore
+        type: 'date',
+        default() {
+          return new Date()
+        },
+        field: 'date1'
+      }
+    },
+  ]
+}
+
+const values = {
+  name: 'Bill'
+}
+
+const App = () => {
+  return <VsForm schema={schema} values={values} />
+}
+
+export default App
+```
+
 
 ## License
 
