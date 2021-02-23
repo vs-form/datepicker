@@ -41,6 +41,7 @@ const schema: ISchema = {
       inputComponent: {
         //@ts-ignore
         type: 'date',
+        required: true,
         dateFormat: 'dd.MM.yyyy',
         locale: 'de',
         field: 'date2'
@@ -52,6 +53,7 @@ const schema: ISchema = {
       label: 'Save',
       onClick({ sm }) {
         // alert the values (sm is the instance of the SchemaManager)
+        sm.validateAll(true)
         alert(JSON.stringify(sm.Values, null, 2))
       }
     }

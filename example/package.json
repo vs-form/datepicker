@@ -19,7 +19,7 @@
     "@types/node": "file:../node_modules/@types/node",
     "@types/react": "file:../node_modules/@types/react",
     "@types/react-dom": "file:../node_modules/@types/react-dom",
-    "@vs-form/tailwind": "^0.1.11",
+    "@vs-form/tailwind": "^0.1.16",
     "datepicker": "file:..",
     "postcss": "^8.2.6",
     "react": "file:../node_modules/react",

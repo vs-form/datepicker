@@ -81,6 +81,7 @@ export const DateComp = (props: ElementProps) => {
         placeholderText={comp.placeholder}
         selected={startDate}
         onChange={(date: Date) => handleChange(date)}
+        onBlur={validateOnBlur}
         {...addProps()}
       />
     </div>
