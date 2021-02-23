@@ -20,7 +20,7 @@ export interface IDateComponentProps extends IDataComponent {
 }
 
 export const DateComp = (props: ElementProps) => {
-  const { sm, data, themeColor, addProps, events, validateOnBlur } = props
+  const { data, themeColor, addProps, validateOnBlur } = props
   const comp = (props.comp as unknown) as IDateComponentProps
   comp.dataType = 'date'
   const locale = comp.locale || 'en'
