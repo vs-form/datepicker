@@ -3,11 +3,13 @@ import DatePicker from 'react-datepicker'
 import { registerLocale } from 'react-datepicker'
 import de from 'date-fns/locale/de'
 import fr from 'date-fns/locale/fr'
+import it from 'date-fns/locale/it'
 
 import { ElementProps, IDefaultStyles, IDataComponent } from '@vs-form/tailwind'
 
 registerLocale('de', de)
 registerLocale('fr', fr)
+registerLocale('it', it)
 
 export interface IDateComponentProps extends IDataComponent {
   type: 'date'
@@ -18,7 +20,7 @@ export interface IDateComponentProps extends IDataComponent {
 }
 
 export const DateComp = (props: ElementProps) => {
-  const { data, themeColor, addProps } = props
+  const { sm, data, themeColor, addProps, events, validateOnBlur } = props
   const comp = (props.comp as unknown) as IDateComponentProps
   comp.dataType = 'date'
   const locale = comp.locale || 'en'
@@ -37,10 +39,10 @@ export const DateComp = (props: ElementProps) => {
         lineHeight: 'leading-tight',
         focus: {
           boxShadow: 'focus:shadow-outline',
-          outline: 'focus:outline-none'
-        }
+          outline: 'focus:outline-none',
+        },
       },
-      class: themeColor().focusWiBorderColor
+      class: themeColor().focusWiBorderColor,
     },
     styleInput: {
       classes: {
@@ -54,10 +56,10 @@ export const DateComp = (props: ElementProps) => {
           borderWidth: 'focus:border-0',
           appearance: 'focus:appearance-none',
           boxShadow: 'focus:shadow-none',
-          ringWidth: 'focus:ring-0'
-        }
-      }
-    }
+          ringWidth: 'focus:ring-0',
+        },
+      },
+    },
   }
 
   const [startDate, setStartDate] = React.useState(data.value())
@@ -65,7 +67,9 @@ export const DateComp = (props: ElementProps) => {
   const handleChange = (value: Date) => {
     setStartDate(value)
     data.updateValue(value)
+    validateOnBlur()
   }
+
   const m = props.mergeStyles(style)
 
   return (
